@@ -144,7 +144,13 @@ class MimirGames {
       const data = await response.json();
 
       if (response.ok) {
-        if (successDiv) successDiv.textContent = data.message;
+        if (successDiv) {
+          if (action === "login" && data.emailAdded) {
+            successDiv.innerHTML = '<strong>Email address added to your profile.</strong><br><em>You can now reset your password if needed.</em>';
+          } else {
+            successDiv.textContent = data.message;
+          }
+        }
         localStorage.setItem("mimirUsername", username);
         localStorage.setItem("mimirIsLoggedIn", "true");
         setTimeout(() => this.showMainContent(username), 1000);

@@ -176,6 +176,19 @@ body {
   font-size: 12px;
   margin: 5px 0;
   min-height: 15px;
+  line-height: 1.4;
+  text-align: left;
+}
+
+.success-message strong {
+  color: #00ffcc;
+  font-weight: 600;
+}
+
+.success-message em {
+  color: #4dffdd;
+  font-style: italic;
+  font-size: 11px;
 }
 
 .password-requirements {
