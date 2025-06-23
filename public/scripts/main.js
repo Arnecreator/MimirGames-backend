@@ -284,7 +284,7 @@ class MimirGames {
   }
 
   showEmailAddedNotification() {
-    this.showToast("Email address added to your profile. You can now reset your password if needed.", "success", 8000);
+    this.showToast("Email address added to your profile. You can now reset your password if needed.", "info", 8000);
   }
 
   logout() {
