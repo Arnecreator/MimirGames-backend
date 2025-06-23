@@ -151,7 +151,7 @@ class MimirGames {
       } else {
         if (errorDiv) {
           if (action === "login" && (response.status === 401 || data.error.includes("användarnamn") || data.error.includes("lösenord"))) {
-            errorDiv.innerHTML = '<strong>Fel användarnamn eller lösenord.</strong><br><em>Kontrollera din information. Vill du skapa ett nytt konto med dessa uppgifter, klicka på Register.</em>';
+            errorDiv.innerHTML = '<strong>Incorrect username or password.</strong><br><em>Check your information. To create a new account with these details, click Register.</em>';
           } else {
             errorDiv.textContent = data.error;
           }
