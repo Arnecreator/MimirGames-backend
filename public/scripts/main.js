@@ -147,7 +147,7 @@ class MimirGames {
       if (response.ok) {
         if (action === "register") {
           // Show success toast after registration
-          this.showToast("Account created and you're now logged in!", "success", 8000);
+          this.showToast("Account created and you're now logged in!", "info", 8000);
         } else if (successDiv) {
           if (action === "login" && data.emailAdded) {
             // Show persistent email notification
