@@ -87,6 +87,7 @@ class MimirGames {
           const successDiv = document.getElementById("authSuccess");
           if (errorDiv) errorDiv.textContent = "";
           if (successDiv) successDiv.textContent = "";
+          // Don't clear the email notification - let it persist
         });
       }
     });
@@ -146,7 +147,8 @@ class MimirGames {
       if (response.ok) {
         if (successDiv) {
           if (action === "login" && data.emailAdded) {
-            successDiv.innerHTML = '<strong>Email address added to your profile.</strong><br><em>You can now reset your password if needed.</em>';
+            // Show persistent email notification
+            this.showEmailAddedNotification();
           } else {
             successDiv.textContent = data.message;
           }
@@ -193,6 +195,84 @@ class MimirGames {
     }
 
     return { valid: true };
+  }
+
+  showEmailAddedNotification() {
+    // Create notification element
+    const notification = document.createElement('div');
+    notification.id = 'emailNotification';
+    notification.innerHTML = '<strong>Email address added to your profile.</strong><br><em>You can now reset your password if needed.</em>';
+    notification.style.cssText = `
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: rgba(0, 255, 204, 0.15);
+      border: 1px solid #00ffcc;
+      color: #00ffcc;
+      padding: 15px 20px;
+      border-radius: 8px;
+      font-size: 12px;
+      line-height: 1.4;
+      z-index: 10000;
+      max-width: 280px;
+      box-shadow: 0 4px 12px rgba(0, 255, 204, 0.2);
+      animation: slideInRight 0.3s ease-out;
+    `;
+    
+    // Add animation styles to head if not already present
+    if (!document.getElementById('notificationStyles')) {
+      const styles = document.createElement('style');
+      styles.id = 'notificationStyles';
+      styles.textContent = `
+        @keyframes slideInRight {
+          from { transform: translateX(100%); opacity: 0; }
+          to { transform: translateX(0); opacity: 1; }
+        }
+        @keyframes slideOutRight {
+          from { transform: translateX(0); opacity: 1; }
+          to { transform: translateX(100%); opacity: 0; }
+        }
+        #emailNotification strong {
+          color: #00ffcc;
+          font-weight: 600;
+        }
+        #emailNotification em {
+          color: #4dffdd;
+          font-style: italic;
+          font-size: 11px;
+        }
+      `;
+      document.head.appendChild(styles);
+    }
+    
+    // Remove any existing notification
+    const existing = document.getElementById('emailNotification');
+    if (existing) existing.remove();
+    
+    // Add to page
+    document.body.appendChild(notification);
+    
+    // Auto-remove after 4 seconds
+    setTimeout(() => {
+      if (notification.parentNode) {
+        notification.style.animation = 'slideOutRight 0.3s ease-in';
+        setTimeout(() => {
+          if (notification.parentNode) {
+            notification.remove();
+          }
+        }, 300);
+      }
+    }, 4000);
+    
+    // Remove on click
+    notification.addEventListener('click', () => {
+      notification.style.animation = 'slideOutRight 0.3s ease-in';
+      setTimeout(() => {
+        if (notification.parentNode) {
+          notification.remove();
+        }
+      }, 300);
+    });
   }
 
   logout() {
