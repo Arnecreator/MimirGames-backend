@@ -252,7 +252,7 @@ class MimirGames {
     // Add to page
     document.body.appendChild(notification);
     
-    // Auto-remove after 4 seconds
+    // Auto-remove after 8 seconds
     setTimeout(() => {
       if (notification.parentNode) {
         notification.style.animation = 'slideOutRight 0.3s ease-in';
@@ -262,7 +262,7 @@ class MimirGames {
           }
         }, 300);
       }
-    }, 4000);
+    }, 8000);
     
     // Remove on click
     notification.addEventListener('click', () => {
