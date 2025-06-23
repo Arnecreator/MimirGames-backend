@@ -171,6 +171,14 @@ body {
   font-size: 11px;
 }
 
+.email-label {
+  display: block;
+  color: #aaa;
+  font-size: 11px;
+  margin: -5px 0 10px 0;
+  text-align: left;
+}
+
 /* Header - logga, text och användarinfo */
 .header {
   display: flex;

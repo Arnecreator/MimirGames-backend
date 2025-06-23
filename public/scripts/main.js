@@ -61,6 +61,7 @@ class MimirGames {
     const registerBtn = document.getElementById("registerBtn");
     const usernameInput = document.getElementById("usernameInput");
     const passwordInput = document.getElementById("passwordInput");
+    const emailInput = document.getElementById("emailInput");
     const errorDiv = document.getElementById("authError");
     const successDiv = document.getElementById("authSuccess");
 
@@ -72,7 +73,7 @@ class MimirGames {
       registerBtn.addEventListener("click", () => this.handleAuth("register"));
     }
 
-    [usernameInput, passwordInput].forEach((input) => {
+    [usernameInput, passwordInput, emailInput].forEach((input) => {
       if (input) {
         input.addEventListener("keypress", (e) => {
           if (e.key === "Enter") {
@@ -105,11 +106,13 @@ class MimirGames {
   async handleAuth(action) {
     const usernameInput = document.getElementById("usernameInput");
     const passwordInput = document.getElementById("passwordInput");
+    const emailInput = document.getElementById("emailInput");
     const errorDiv = document.getElementById("authError");
     const successDiv = document.getElementById("authSuccess");
 
     const username = usernameInput?.value.trim();
     const password = passwordInput?.value;
+    const email = emailInput?.value.trim();
 
     if (errorDiv) errorDiv.textContent = "";
     if (successDiv) successDiv.textContent = "";
@@ -126,7 +129,7 @@ class MimirGames {
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ username, password }),
+          body: JSON.stringify({ username, password, email }),
         },
       );
 
