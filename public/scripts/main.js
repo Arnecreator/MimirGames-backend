@@ -80,6 +80,14 @@ class MimirGames {
             this.handleAuth("login");
           }
         });
+        
+        // Clear error messages when user starts typing
+        input.addEventListener("input", () => {
+          const errorDiv = document.getElementById("authError");
+          const successDiv = document.getElementById("authSuccess");
+          if (errorDiv) errorDiv.textContent = "";
+          if (successDiv) successDiv.textContent = "";
+        });
       }
     });
 
@@ -141,7 +149,13 @@ class MimirGames {
         localStorage.setItem("mimirIsLoggedIn", "true");
         setTimeout(() => this.showMainContent(username), 1000);
       } else {
-        if (errorDiv) errorDiv.textContent = data.error;
+        if (errorDiv) {
+          if (action === "login" && (response.status === 401 || data.error.includes("användarnamn") || data.error.includes("lösenord"))) {
+            errorDiv.innerHTML = '<strong>Account not found. Please check your username and password.</strong><br><em>If you\'d like to create a new account with these details, click Register.</em>';
+          } else {
+            errorDiv.textContent = data.error;
+          }
+        }
       }
     } catch (error) {
       if (errorDiv)
