@@ -1,0 +1,393 @@
+body {
+  font-family: 'Inter', sans-serif;
+  background: #0a0b1e;
+  color: white;
+  margin: 0;
+}
+
+/* Mobile optimizations */
+@media (max-width: 768px) {
+  .games-container {
+    grid-template-columns: 1fr;
+    gap: 12px;
+    padding: 10px;
+  }
+
+  .game-card {
+    padding: 12px;
+  }
+
+  .header {
+    padding: 15px 10px 12px 10px;
+  }
+
+  .logo {
+    font-size: 28px;
+    margin-bottom: 12px;
+  }
+
+  .user-info {
+    gap: 8px;
+  }
+
+  .welcome-message {
+    font-size: 14px;
+  }
+
+  .btn-logout {
+    padding: 5px 10px;
+    font-size: 11px;
+  }
+
+  .btn-play {
+    min-height: 36px;
+    font-size: 13px;
+    padding: 10px 16px;
+    width: 60%;
+  }
+}
+
+/* Extra compact mobile styling */
+@media (max-width: 480px) {
+  .header {
+    padding: 12px 8px 10px 8px;
+  }
+
+  .logo {
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+
+  .user-info {
+    gap: 6px;
+  }
+
+  .welcome-message {
+    font-size: 12px;
+  }
+
+  .button-group {
+    gap: 6px;
+  }
+
+  .btn-logout {
+    padding: 4px 8px;
+    font-size: 10px;
+    border-radius: 14px;
+  }
+}
+
+.modal {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+.modal-content {
+  background: #1a1d3a;
+  padding: 30px;
+  border-radius: 10px;
+  width: 100%;
+  max-width: 400px;
+  text-align: center;
+}
+
+.modal-content h3 {
+  color: #00ffcc;
+  margin-bottom: 20px;
+}
+
+.modal-content input {
+  width: 100%;
+  padding: 12px;
+  margin: 8px 0;
+  border: 1px solid #333;
+  border-radius: 5px;
+  background: #111335;
+  color: white;
+  font-size: 14px;
+  box-sizing: border-box;
+}
+
+.modal-content input:focus {
+  outline: none;
+  border-color: #00ffcc;
+}
+
+.auth-buttons {
+  display: flex;
+  gap: 10px;
+  margin: 15px 0;
+}
+
+.btn-primary {
+  padding: 12px 20px;
+  background: #00ffcc;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  font-weight: bold;
+  color: #111335;
+  flex: 1;
+}
+
+.btn-secondary {
+  padding: 12px 20px;
+  background: transparent;
+  border: 2px solid #00ffcc;
+  cursor: pointer;
+  border-radius: 5px;
+  font-weight: bold;
+  color: #00ffcc;
+  flex: 1;
+}
+
+.btn-primary:hover {
+  background: #00e6b8;
+}
+
+.btn-secondary:hover {
+  background: rgba(0, 255, 204, 0.1);
+}
+
+.error-message {
+  color: #ff6b6b;
+  font-size: 12px;
+  margin: 5px 0;
+  min-height: 15px;
+}
+
+.success-message {
+  color: #00ffcc;
+  font-size: 12px;
+  margin: 5px 0;
+  min-height: 15px;
+}
+
+.password-requirements {
+  margin-top: 10px;
+  color: #ccc;
+  font-size: 11px;
+}
+
+/* Header - logga, text och användarinfo */
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px 15px 15px 15px;
+  background: #111335;
+  border-bottom: 1px solid #222;
+  text-align: center;
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.8rem;
+  /* Mindre mellanrum mellan logga och text */
+  margin-bottom: 8px;
+  /* Mindre mellanrum under */
+}
+
+.logo-img {
+  height: 1.8rem;
+  /* Mindre logga för bättre balans */
+  width: auto;
+}
+
+.logo-text {
+  font-weight: 800;
+  font-size: 1.4rem;
+  /* Något mindre textstorlek */
+  color: #00ffcc;
+}
+
+.user-info {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: nowrap;
+  width: 100%;
+}
+
+.welcome-message {
+  font-size: 16px;
+  color: #fff;
+  white-space: nowrap;
+  flex-shrink: 1;
+}
+
+.button-group {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+/* Knappar */
+.btn-logout {
+  background: transparent;
+  color: #ccc;
+  border: 1px solid #ccc;
+  padding: 6px 12px;
+  cursor: pointer;
+  border-radius: 17px;
+  font-size: 12px;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.btn-logout:hover {
+  background: rgba(204, 204, 204, 0.1);
+  border-color: #ccc;
+  color: #ccc;
+}
+
+/* Mobilanpassning */
+@media (max-width: 768px) {
+  .welcome-message {
+    font-size: 14px;
+  }
+
+  .btn-logout {
+    padding: 5px 10px;
+    font-size: 11px;
+  }
+}
+
+@media (max-width: 480px) {
+  .header {
+    padding: 12px 8px 10px 8px;
+  }
+
+  .logo-text {
+    font-size: 1.3rem;
+  }
+
+  .welcome-message {
+    font-size: 12px;
+  }
+
+  .button-group {
+    gap: 6px;
+  }
+
+  .btn-logout {
+    padding: 4px 8px;
+    font-size: 10px;
+    border-radius: 14px;
+  }
+}
+
+.games-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 15px;
+  padding: 15px;
+}
+
+.game-card {
+  background: #1a1d3a;
+  border-radius: 10px;
+  padding: 15px;
+  transition: transform 0.2s ease-in-out;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.game-card:hover {
+  transform: scale(1.03);
+}
+
+.game-card h3 {
+  margin: 6px 0;
+}
+
+.game-icon {
+  font-size: 36px;
+  margin-bottom: 6px;
+}
+
+.game-description {
+  color: #aaa;
+  margin: 6px 0;
+  flex-grow: 1;
+}
+
+.game-status {
+  display: block;
+  padding: 5px 10px;
+  background: #4a4a4a;
+  color: #cccccc;
+  border-radius: 16px;
+  font-size: 12px;
+  font-weight: 500;
+  margin: 8px auto;
+  text-align: center;
+  width: fit-content;
+}
+
+.game-status.available {
+  background: #666666;
+  color: #cccccc;
+}
+
+.btn-play {
+  display: block;
+  padding: 8px 16px;
+  background: #00ffcc;
+  color: #000;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  border-radius: 26px;
+  font-weight: bold;
+  text-align: center;
+  width: 60%;
+  margin: 0 auto;
+  min-height: 36px;
+  font-size: 13px;
+  transition: all 0.2s ease;
+  box-sizing: border-box;
+}
+
+.btn-play:hover {
+  background: #00e6b8;
+  transform: translateY(-1px);
+}
+
+.btn-play.disabled {
+  background: transparent;
+  color: #ccc;
+  border: 2px solid #ccc;
+  cursor: not-allowed;
+}
+
+.btn-play.disabled:hover {
+  background: transparent;
+  transform: none;
+}
+
+.btn-logout {
+  background: transparent;
+  color: #ccc;
+  border: 1px solid #ccc;
+  padding: 6px 12px;
+  cursor: pointer;
+  border-radius: 17px;
+  font-size: 12px;
+  transition: all 0.2s ease;
+}
+
+.btn-logout:hover {
+  background: rgba(204, 204, 204, 0.1);
+  border-color: #ccc;
+  color: #ccc;
+}

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mimir Games</title>
+  <link href="styles/main.css" rel="stylesheet" type="text/css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+</head>
+
+<body>
+  <!-- Dev Mode Banner -->
+  <div id="devBanner" style="display: none; background: #222; color: lime; text-align: center; padding: 8px; font-weight: bold;">
+    🧪 Dev Mode Active: Logged in as Putte68!
+  </div>
+
+  <!-- Top Navigation -->
+  <nav style="background-color: #222; padding: 10px;">
+    <a href="index.html" style="color: white; margin-right: 15px; text-decoration: none;">🏠 Start</a>
+    <a href="games.html" style="color: white; margin-right: 15px; text-decoration: none;">🎮 Games</a>
+    <a href="leaderboard.html" style="color: white; margin-right: 15px; text-decoration: none;">🏆 Leaderboard</a>
+    <a href="#" id="logoutLink" style="color: white; text-decoration: none;">🚪 Logout</a>
+  </nav>
+
+  <!-- Username Modal -->
+  <div id="usernameModal" class="modal">
+    <div class="modal-content">
+      <h2>🎮 Welcome to Mimir Games!</h2>
+      <div id="loginForm">
+        <h3>Login or Register</h3>
+        <input type="text" id="usernameInput" placeholder="Username (6-20 characters)" maxlength="20" />
+        <input type="password" id="passwordInput" placeholder="Password (min 8 chars)" />
+        <div id="authError" class="error-message"></div>
+        <div id="authSuccess" class="success-message"></div>
+        <div class="auth-buttons">
+          <button id="loginBtn" class="btn-primary">Login</button>
+          <button id="registerBtn" class="btn-secondary">Register</button>
+        </div>
+        <div class="password-requirements">
+          <small>Password must contain: uppercase, lowercase, number, and symbol</small>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <div id="mainContent" style="display: none;">
+    <!-- Header -->
+    <header class="header">
+      <div class="logo-container">
+        <img src="attached_assets/mimir_logo.svg" alt="Mimir logo" class="logo-img" />
+        <span class="logo-text">Mimir</span>
+      </div>
+      <div class="user-info">
+        <span id="welcomeMessage" class="welcome-message">Welcome, Putte68!</span>
+        <div class="button-group">
+          <button id="logoutBtn" class="btn-logout">Logout</button>
+          <button id="connectWalletBtn" class="btn-logout">Connect Wallet</button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Game Cards Container -->
+    <main class="games-container">
+      <!-- Mimir Quiz -->
+      <div class="game-card available">
+        <div class="game-icon">🧠</div>
+        <h3>Mimir Quiz</h3>
+        <p class="game-description">Test your knowledge with challenging questions</p>
+        <div class="game-status available">Available</div>
+        <a href="mimirquiz.html" class="btn-play">Play Now</a>
+      </div>
+
+      <!-- Mimir Sudoku -->
+      <div class="game-card coming-soon">
+        <div class="game-icon">🔢</div>
+        <h3>Mimir Sudoku</h3>
+        <p class="game-description">Classic number puzzle game with multiple difficulty levels</p>
+        <div class="game-status">Coming Soon</div>
+        <button class="btn-play disabled" disabled>Play Now</button>
+      </div>
+
+      <!-- Mimir Pac-Man -->
+      <div class="game-card coming-soon">
+        <div class="game-icon">👾</div>
+        <h3>Mimir Pac-Man</h3>
+        <p class="game-description">Classic arcade adventure with modern enhancements</p>
+        <div class="game-status">Coming Soon</div>
+        <button class="btn-play disabled" disabled>Play Now</button>
+      </div>
+
+      <!-- My Wallet -->
+      <div class="game-card coming-soon">
+        <div class="game-icon">🔐</div>
+        <h3>My Wallet</h3>
+        <p class="game-description">Connect your MetaMask wallet to earn rewards, view balance, and track token transfers.</p>
+        <div class="game-status">Coming Soon</div>
+        <button class="btn-play disabled" disabled>Connect Wallet</button>
+      </div>
+    </main>
+
+    <!-- 🏆 Leaderboard Section -->
+    <section class="leaderboard-section" style="padding: 30px;">
+      <h2>🏆 Leaderboard</h2>
+      <table class="leaderboard-table">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Username</th>
+            <th>Score</th>
+            <th>Game</th>
+            <th>Date</th>
+          </tr>
+        </thead>
+        <tbody id="leaderboardTable">
+          <!-- Fylls med JS -->
+        </tbody>
+      </table>
+    </section>
+  </div>
+  
+  <script src="scripts/main.js"></script>
+</body>
+</html>
