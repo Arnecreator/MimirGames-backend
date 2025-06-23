@@ -145,7 +145,10 @@ class MimirGames {
       const data = await response.json();
 
       if (response.ok) {
-        if (successDiv) {
+        if (action === "register") {
+          // Show success toast after registration
+          this.showToast("Account created and you're now logged in!", "success", 7000);
+        } else if (successDiv) {
           if (action === "login" && data.emailAdded) {
             // Show persistent email notification
             this.showEmailAddedNotification();
@@ -197,32 +200,46 @@ class MimirGames {
     return { valid: true };
   }
 
-  showEmailAddedNotification() {
-    // Create notification element
-    const notification = document.createElement('div');
-    notification.id = 'emailNotification';
-    notification.innerHTML = '<strong>Email address added to your profile.</strong><br><em>You can now reset your password if needed.</em>';
-    notification.style.cssText = `
+  showToast(message, type = "info", duration = 5000) {
+    const toast = document.createElement("div");
+    toast.className = `toast ${type}`;
+    toast.textContent = message;
+    
+    // Base toast styles
+    toast.style.cssText = `
       position: fixed;
       top: 20px;
       right: 20px;
-      background: rgba(0, 255, 204, 0.15);
-      border: 1px solid #00ffcc;
-      color: #00ffcc;
       padding: 15px 20px;
       border-radius: 8px;
-      font-size: 12px;
-      line-height: 1.4;
+      font-size: 14px;
+      font-weight: 500;
       z-index: 10000;
-      max-width: 280px;
-      box-shadow: 0 4px 12px rgba(0, 255, 204, 0.2);
+      max-width: 300px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
       animation: slideInRight 0.3s ease-out;
+      cursor: pointer;
     `;
     
-    // Add animation styles to head if not already present
-    if (!document.getElementById('notificationStyles')) {
+    // Type-specific styling
+    if (type === "success") {
+      toast.style.background = "rgba(34, 197, 94, 0.9)";
+      toast.style.color = "white";
+      toast.style.border = "1px solid #22c55e";
+    } else if (type === "error") {
+      toast.style.background = "rgba(239, 68, 68, 0.9)";
+      toast.style.color = "white";
+      toast.style.border = "1px solid #ef4444";
+    } else {
+      toast.style.background = "rgba(0, 255, 204, 0.15)";
+      toast.style.color = "#00ffcc";
+      toast.style.border = "1px solid #00ffcc";
+    }
+    
+    // Add animation styles if not present
+    if (!document.getElementById('toastStyles')) {
       const styles = document.createElement('style');
-      styles.id = 'notificationStyles';
+      styles.id = 'toastStyles';
       styles.textContent = `
         @keyframes slideInRight {
           from { transform: translateX(100%); opacity: 0; }
@@ -232,47 +249,42 @@ class MimirGames {
           from { transform: translateX(0); opacity: 1; }
           to { transform: translateX(100%); opacity: 0; }
         }
-        #emailNotification strong {
-          color: #00ffcc;
-          font-weight: 600;
-        }
-        #emailNotification em {
-          color: #4dffdd;
-          font-style: italic;
-          font-size: 11px;
-        }
       `;
       document.head.appendChild(styles);
     }
     
-    // Remove any existing notification
-    const existing = document.getElementById('emailNotification');
+    // Remove any existing toast
+    const existing = document.querySelector('.toast');
     if (existing) existing.remove();
     
     // Add to page
-    document.body.appendChild(notification);
+    document.body.appendChild(toast);
     
-    // Auto-remove after 8 seconds
+    // Auto-remove after duration
     setTimeout(() => {
-      if (notification.parentNode) {
-        notification.style.animation = 'slideOutRight 0.3s ease-in';
+      if (toast.parentNode) {
+        toast.style.animation = 'slideOutRight 0.3s ease-in';
         setTimeout(() => {
-          if (notification.parentNode) {
-            notification.remove();
+          if (toast.parentNode) {
+            toast.remove();
           }
         }, 300);
       }
-    }, 8000);
+    }, duration);
     
     // Remove on click
-    notification.addEventListener('click', () => {
-      notification.style.animation = 'slideOutRight 0.3s ease-in';
+    toast.addEventListener("click", () => {
+      toast.style.animation = 'slideOutRight 0.3s ease-in';
       setTimeout(() => {
-        if (notification.parentNode) {
-          notification.remove();
+        if (toast.parentNode) {
+          toast.remove();
         }
       }, 300);
     });
+  }
+
+  showEmailAddedNotification() {
+    this.showToast("Email address added to your profile. You can now reset your password if needed.", "info", 8000);
   }
 
   logout() {
